@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,vue}\"",
+    "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx,.vue src",
+    "tc": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,vue}": [
+      "eslint --fix --max-warnings=0"
+    ]
+  }
+}
