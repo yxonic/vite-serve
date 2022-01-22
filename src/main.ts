@@ -2,6 +2,7 @@
 import { createServer, send } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import { existsSync } from 'fs'
 
 const vueScript = `<html>
   <body>
@@ -19,12 +20,16 @@ const vueScript = `<html>
   </body>
 </html>`
 
+const modulePath = existsSync(path.resolve(__dirname, '../node_modules/'))
+  ? path.resolve(__dirname, '../node_modules/')
+  : path.resolve(__dirname, '../../')
+
 async function main() {
   const server = await createServer({
     resolve: {
       alias: {
-        '/node_modules': path.resolve(__dirname, '../node_modules/'),
-        vue: path.resolve(__dirname, '../node_modules/vue'),
+        '/node_modules': modulePath,
+        vue: path.resolve(modulePath, './vue'),
       },
     },
     plugins: [
