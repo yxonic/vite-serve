@@ -1,8 +1,11 @@
 {
   "name": "vite-serve",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "instantly preview a single file component with vite",
   "bin": "dist/main.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,vue}\"",
     "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx,.vue src",
