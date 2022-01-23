@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/yxonic/vite-serve/compare/v0.2.1...v0.2.2) (2022-01-23)
+
+
+### Bug Fixes
+
+* fix high cpu usage caused by watcher ([681a4fe](https://github.com/yxonic/vite-serve/commit/681a4fe31463599de4647ad228ad69d959186607))
+
 ## [0.2.1](https://github.com/yxonic/vite-serve/compare/v0.2.0...v0.2.1) (2022-01-23)
 
 
