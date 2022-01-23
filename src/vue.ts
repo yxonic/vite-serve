@@ -3,6 +3,8 @@ import { send, PluginOption } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
 
+export const prebundles = ['vue']
+
 export async function loadPlugins(
   filepath: string,
 ): Promise<(PluginOption | PluginOption[])[]> {
@@ -11,11 +13,7 @@ export async function loadPlugins(
       name: 'index',
       configureServer: (server) => {
         server.middlewares.use(async (req, res, next) => {
-          if (
-            !req.url ||
-            (!req.url.endsWith('/') && !req.url.endsWith('.html'))
-          )
-            return next()
+          if (req.url !== '/') return next()
           const html = await server.transformIndexHtml(
             req.url,
             `<html>

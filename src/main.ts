@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 import { createServer } from 'vite'
 import path from 'path'
-import { existsSync, readFileSync } from 'fs'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { cac } from 'cac'
 import colors from 'picocolors'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
 const version = JSON.parse(
-  readFileSync(path.resolve(__dirname, '../package.json')).toString(),
+  fs.readFileSync(path.resolve(__dirname, '../package.json')).toString(),
 ).version
 
-const modulePath = existsSync(path.resolve(__dirname, '../node_modules/'))
+const modulePath = fs.existsSync(path.resolve(__dirname, '../node_modules/'))
   ? path.resolve(__dirname, '../node_modules/')
   : path.resolve(__dirname, '../../')
 
@@ -36,21 +37,22 @@ async function serve(filename: string, options: ServeOptions) {
   try {
     const filepath = path.resolve(filename)
     const type = options.type || getTypeByExt(filepath)
+    const module = await import(`./${type}.js`)
     const server = await createServer({
-      configFile: false,
       root: modulePath,
       optimizeDeps: {
-        include: type === 'vue' ? ['vue'] : ['react', 'react-dom'],
+        include: module.prebundles,
       },
       server: {
         host: options.host,
         port: options.port,
-        fs: {
-          allow: [modulePath, process.cwd()],
+        watch: {
+          ignored: ['/'],
         },
       },
-      plugins: await (await import(`./${type}.js`)).loadPlugins(filepath),
+      plugins: [await module.loadPlugins(filepath)],
     })
+    server.watcher.add(`${process.cwd()}/**`)
 
     await server.listen()
 

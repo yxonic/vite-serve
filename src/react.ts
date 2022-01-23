@@ -2,6 +2,8 @@ import { send, PluginOption } from 'vite'
 
 import React from '@vitejs/plugin-react'
 
+export const prebundles = ['react', 'react-dom']
+
 export async function loadPlugins(
   filepath: string,
 ): Promise<(PluginOption | PluginOption[])[]> {
@@ -10,11 +12,7 @@ export async function loadPlugins(
       name: 'index',
       configureServer: (server) => {
         server.middlewares.use(async (req, res, next) => {
-          if (
-            !req.url ||
-            (!req.url.endsWith('/') && !req.url.endsWith('.html'))
-          )
-            return next()
+          if (req.url !== '/') return next()
           const html = await server.transformIndexHtml(
             req.url,
             `<html>
