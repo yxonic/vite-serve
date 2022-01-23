@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es2016",
     "lib": ["dom", "esnext"],
     "outDir": "dist",

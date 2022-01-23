@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 import { createServer, send } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import { existsSync } from 'fs'
+import { existsSync, readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+
+import Vue from '@vitejs/plugin-vue'
+import WindiCSS from 'vite-plugin-windicss'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const vueScript = `<html>
   <body>
     <div id="app"></div>
-    <script module>
-    const app = import('./main.vue')
-    app.then(({ default: App }) => {
-      const vue = import('/node_modules/vue')
-      vue.then(({ createApp }) => {
-        const app = createApp(App)
-        app.mount('#app')
-      })
-    })
+    <script type="module">
+      import 'virtual:windi.css'
+      import App from '/main.vue'
+      import { createApp } from 'vue'
+      const app = createApp(App)
+      app.mount('#app')
     </script>
   </body>
 </html>`
@@ -26,10 +29,15 @@ const modulePath = existsSync(path.resolve(__dirname, '../node_modules/'))
 
 async function main() {
   const server = await createServer({
+    configFile: false,
     resolve: {
       alias: {
-        '/node_modules': modulePath,
         vue: path.resolve(modulePath, './vue'),
+      },
+    },
+    server: {
+      fs: {
+        allow: [__dirname, process.cwd()],
       },
     },
     plugins: [
@@ -51,10 +59,25 @@ async function main() {
           })
         },
       },
-      vue(),
+      Vue(),
+      WindiCSS({
+        config: {
+          extract: {
+            include: [`${process.cwd()}/main.vue`],
+          },
+        },
+      }),
     ],
   })
+
   await server.listen()
+  console.log(
+    `vite-serve v${
+      JSON.parse(
+        readFileSync(path.resolve(__dirname, '../package.json')).toString(),
+      ).version
+    } running at:\n`,
+  )
   server.printUrls()
 }
 
