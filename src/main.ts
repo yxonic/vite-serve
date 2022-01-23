@@ -37,7 +37,7 @@ async function main() {
     },
     server: {
       fs: {
-        allow: [__dirname, process.cwd()],
+        allow: [modulePath, process.cwd()],
       },
     },
     plugins: [
