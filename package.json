@@ -16,9 +16,12 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^1.1.4",
     "@vitejs/plugin-vue": "^2.1.0",
     "cac": "^6.7.12",
     "picocolors": "^1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "vite": "^2.7.13",
     "vite-plugin-windicss": "^1.6.3",
     "vue": "^3.2.28",

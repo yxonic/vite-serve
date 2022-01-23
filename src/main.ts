@@ -1,13 +1,10 @@
 #!/usr/bin/env node
-import { createServer, send } from 'vite'
+import { createServer } from 'vite'
 import path from 'path'
 import { existsSync, readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { cac } from 'cac'
 import colors from 'picocolors'
-
-import Vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -22,16 +19,28 @@ const modulePath = existsSync(path.resolve(__dirname, '../node_modules/'))
 interface ServeOptions {
   host?: string
   port?: number
+  type?: string
 }
 
-async function serve(filepath: string, options: ServeOptions) {
+function getTypeByExt(filepath: string) {
+  const ext = path.extname(filepath)
+  if (ext === '.vue') {
+    return 'vue'
+  } else if (/^\.[jt]sx?$/.test(ext)) {
+    return 'react'
+  }
+  throw new Error('unknown file ext')
+}
+
+async function serve(filename: string, options: ServeOptions) {
   try {
+    const filepath = path.resolve(filename)
+    const type = options.type || getTypeByExt(filepath)
     const server = await createServer({
       configFile: false,
-      resolve: {
-        alias: {
-          vue: path.resolve(modulePath, './vue'),
-        },
+      root: modulePath,
+      optimizeDeps: {
+        include: type === 'vue' ? ['vue'] : ['react', 'react-dom'],
       },
       server: {
         host: options.host,
@@ -40,45 +49,7 @@ async function serve(filepath: string, options: ServeOptions) {
           allow: [modulePath, process.cwd()],
         },
       },
-      plugins: [
-        {
-          name: 'index',
-          configureServer: (server) => {
-            server.middlewares.use(async (req, res, next) => {
-              if (
-                !req.url ||
-                (!req.url.endsWith('/') && !req.url.endsWith('.html'))
-              )
-                return next()
-              const html = await server.transformIndexHtml(
-                req.url,
-                `<html>
-  <body>
-    <div id="app"></div>
-    <script type="module">
-      import 'virtual:windi.css'
-      import App from '/${filepath}'
-      import { createApp } from 'vue'
-      const app = createApp(App)
-      app.mount('#app')
-    </script>
-  </body>
-</html>`,
-                req.originalUrl,
-              )
-              return send(req, res, html, 'html')
-            })
-          },
-        },
-        Vue(),
-        WindiCSS({
-          config: {
-            extract: {
-              include: [`${process.cwd()}/${filepath}`],
-            },
-          },
-        }),
-      ],
+      plugins: await (await import(`./${type}.js`)).loadPlugins(filepath),
     })
 
     await server.listen()
@@ -104,6 +75,10 @@ cli
   .command('<path>', `serve a single file component`)
   .option('--host [host]', `[string] specify hostname`)
   .option('--port <port>', `[number] specify port`)
+  .option(
+    '-t, --type <type>',
+    `[string] component type (choose from vue, react)`,
+  )
   .action(serve)
 
 cli.help()
