@@ -5,6 +5,7 @@ import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { cac } from 'cac'
 import colors from 'picocolors'
+import WindiCSS from 'vite-plugin-windicss'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -50,9 +51,18 @@ async function serve(filename: string, options: ServeOptions) {
           ignored: ['/'],
         },
       },
-      plugins: [await module.loadPlugins(filepath)],
+      plugins: [
+        await module.loadPlugins(filepath),
+        WindiCSS({
+          config: {
+            extract: {
+              include: [`${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue}`],
+            },
+          },
+        }),
+      ],
     })
-    server.watcher.add(`${process.cwd()}/**`)
+    server.watcher.add(`${path.dirname(filepath)}/**`)
 
     await server.listen()
 

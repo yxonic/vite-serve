@@ -5,6 +5,7 @@
     "target": "es2016",
     "lib": ["dom", "esnext"],
     "outDir": "dist",
+    "allowJs": true,
     "strict": true,
     "esModuleInterop": true,
     "incremental": false,

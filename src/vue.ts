@@ -1,7 +1,6 @@
 import { send, PluginOption } from 'vite'
 
 import Vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
 
 export const prebundles = ['vue']
 
@@ -35,12 +34,5 @@ export async function loadPlugins(
       },
     },
     Vue(),
-    WindiCSS({
-      config: {
-        extract: {
-          include: [filepath],
-        },
-      },
-    }),
   ]
 }
