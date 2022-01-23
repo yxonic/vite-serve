@@ -12,10 +12,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "strictNullChecks": true,
-    "types": [],
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "types": []
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "examples", "node_modules"]
 }

@@ -21,6 +21,7 @@ export async function loadPlugins(
 <script type="module">
   import React from 'react'
   import ReactDOM from 'react-dom'
+  import 'virtual:windi.css'
 
   import App from '/@fs${filepath}'
 

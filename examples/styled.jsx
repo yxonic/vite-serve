@@ -22,6 +22,7 @@ const Container = styled.div`
 
 export default () => (
   <Container>
+    <h1>test</h1>
     <Button>Normal Button</Button>
     <Button primary>Primary Button</Button>
   </Container>

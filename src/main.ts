@@ -22,6 +22,7 @@ interface ServeOptions {
   host?: string
   port?: number
   type?: string
+  preflight: boolean
 }
 
 function getTypeByExt(filepath: string) {
@@ -55,6 +56,7 @@ async function serve(filename: string, options: ServeOptions) {
         await module.loadPlugins(filepath),
         WindiCSS({
           config: {
+            preflight: options.preflight,
             extract: {
               include: [`${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue}`],
             },
@@ -91,6 +93,7 @@ cli
     '-t, --type <type>',
     `[string] component type (choose from vue, react)`,
   )
+  .option('--no-preflight', 'disable preflight style from windicss')
   .action(serve)
 
 cli.help()
