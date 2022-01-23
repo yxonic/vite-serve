@@ -1,3 +1,11 @@
+# [0.3.0](https://github.com/yxonic/vite-serve/compare/v0.2.2...v0.3.0) (2022-01-23)
+
+
+### Features
+
+* **style:** add windi and styled components for react ([5cc73db](https://github.com/yxonic/vite-serve/commit/5cc73db8c916ed5621aa2787129d4a4bba223c68))
+* **style:** support disable windicss preflight style sheets ([649973a](https://github.com/yxonic/vite-serve/commit/649973aac92ac2b11db24198c938e5d44ea38d51))
+
 ## [0.2.2](https://github.com/yxonic/vite-serve/compare/v0.2.1...v0.2.2) (2022-01-23)
 
 
