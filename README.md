@@ -12,8 +12,8 @@ Install:
 npm i -g vite-serve
 ```
 
-Then write a basic Vue SFC (`demo.vue`) and preview it:
+Then write a basic Vue/React component and preview it:
 
 ```bash
-vite-serve demo.vue
+vite-serve demo.vue  # or demo.jsx
 ```
