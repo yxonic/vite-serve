@@ -24,11 +24,16 @@ interface ServeOptions {
 
 function getTypeByExt(filepath: string) {
   const ext = path.extname(filepath)
+  if (ext === '.html') {
+    return 'html'
+  }
   if (ext === '.vue') {
     return 'vue'
-  } else if (ext === '.md') {
+  }
+  if (ext === '.md') {
     return 'markdown'
-  } else if (/^\.[jt]sx?$/.test(ext)) {
+  }
+  if (/^\.[jt]sx?$/.test(ext)) {
     return 'react'
   }
   throw new Error('unknown file extension')
