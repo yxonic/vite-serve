@@ -70,7 +70,7 @@ async function serve(filename: string, options: ServeOptions) {
                 `${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue,md}`,
               ],
             },
-            safelist: ['mx-auto py-20 prose'],
+            safelist: ['mx-auto px-4 py-20 prose'],
             plugins: [typography()],
           },
         }),
@@ -105,7 +105,7 @@ cli
   .option('--port <port>', `[number] specify port`)
   .option(
     '-t, --type <type>',
-    `[string] component type (choose from vue, react, markdown)`,
+    `[string] component type (choose from html, vue, react, markdown)`,
   )
   .option('--no-preflight', 'disable preflight style from windicss')
   .action(serve)

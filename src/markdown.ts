@@ -22,7 +22,7 @@ export async function loadPlugins(
             req.url,
             `<html>
 <body>
-<div class="mx-auto py-20 prose">
+<div class="mx-auto px-4 py-20 prose">
   <div id="app"></div>
 </div>
 <script type="module">

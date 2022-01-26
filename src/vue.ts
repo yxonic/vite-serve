@@ -1,6 +1,7 @@
 import { send, PluginOption } from 'vite'
 
 import Vue from '@vitejs/plugin-vue'
+import VueJsx from '@vitejs/plugin-vue-jsx'
 
 export const prebundles = ['vue']
 
@@ -34,5 +35,6 @@ export async function loadPlugins(
       },
     },
     Vue(),
+    VueJsx(),
   ]
 }
