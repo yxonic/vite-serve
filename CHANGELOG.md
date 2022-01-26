@@ -1,3 +1,10 @@
+## [0.4.3](https://github.com/yxonic/vite-serve/compare/v0.4.2...v0.4.3) (2022-01-26)
+
+
+### Bug Fixes
+
+* html charset ([41001b3](https://github.com/yxonic/vite-serve/commit/41001b3811a8831fe430c66fb6cca32229bb1d71))
+
 ## [0.4.2](https://github.com/yxonic/vite-serve/compare/v0.4.1...v0.4.2) (2022-01-26)
 
 
