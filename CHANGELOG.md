@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/yxonic/vite-serve/compare/v0.4.1...v0.4.2) (2022-01-26)
+
+
+### Bug Fixes
+
+* fix vmark dependency ([f8bc38d](https://github.com/yxonic/vite-serve/commit/f8bc38d68492a656ba33420b0e888bb8f25dd99e))
+
 ## [0.4.1](https://github.com/yxonic/vite-serve/compare/v0.4.0...v0.4.1) (2022-01-26)
 
 
