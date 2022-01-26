@@ -2,7 +2,7 @@
 
 ![Supported node versions](https://img.shields.io/node/v/husky)
 
-Instantly preview a single file component with [Vite](https://vitejs.dev).
+Instantly preview a single file with [Vite](https://vitejs.dev). Supported formats include: `.vue`, `.jsx`, `.tsx`, `.md` (rendered as Vue), and `.html`, with out-of-the box Tailwind / WindiCSS support.
 
 ### Usage
 
@@ -12,8 +12,8 @@ Install:
 npm i -g vite-serve
 ```
 
-Then write a basic Vue/React component and preview it:
+Then preview your file:
 
 ```bash
-vite-serve demo.vue  # or demo.jsx
+vite-serve demo.vue  # or demo.jsx, demo.md, etc.
 ```
