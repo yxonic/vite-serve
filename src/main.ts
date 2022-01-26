@@ -2,13 +2,10 @@
 import { createServer } from 'vite'
 import path from 'path'
 import fs from 'fs'
-import { fileURLToPath } from 'url'
 import { cac } from 'cac'
 import colors from 'picocolors'
 import WindiCSS from 'vite-plugin-windicss'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+import typography from 'windicss/plugin/typography'
 
 const version = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../package.json')).toString(),
@@ -29,10 +26,12 @@ function getTypeByExt(filepath: string) {
   const ext = path.extname(filepath)
   if (ext === '.vue') {
     return 'vue'
+  } else if (ext === '.md') {
+    return 'markdown'
   } else if (/^\.[jt]sx?$/.test(ext)) {
     return 'react'
   }
-  throw new Error('unknown file ext')
+  throw new Error('unknown file extension')
 }
 
 async function serve(filename: string, options: ServeOptions) {
@@ -56,10 +55,18 @@ async function serve(filename: string, options: ServeOptions) {
         await module.loadPlugins(filepath),
         WindiCSS({
           config: {
-            preflight: options.preflight,
+            preflight: options.preflight
+              ? {
+                  includeAll: true,
+                }
+              : false,
             extract: {
-              include: [`${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue}`],
+              include: [
+                `${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue,md}`,
+              ],
             },
+            safelist: ['mx-auto py-20 prose'],
+            plugins: [typography()],
           },
         }),
       ],
@@ -70,7 +77,9 @@ async function serve(filename: string, options: ServeOptions) {
 
     console.log(
       colors.cyan(`\n  vite-serve v${version}`) +
-        colors.green(` dev server running at:\n`),
+        ` serving ` +
+        colors.green(filename) +
+        ` at:\n`,
     )
 
     server.printUrls()
@@ -91,7 +100,7 @@ cli
   .option('--port <port>', `[number] specify port`)
   .option(
     '-t, --type <type>',
-    `[string] component type (choose from vue, react)`,
+    `[string] component type (choose from vue, react, markdown)`,
   )
   .option('--no-preflight', 'disable preflight style from windicss')
   .action(serve)
