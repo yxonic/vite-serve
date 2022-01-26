@@ -1,3 +1,11 @@
+# [0.4.0](https://github.com/yxonic/vite-serve/compare/v0.3.0...v0.4.0) (2022-01-26)
+
+
+### Features
+
+* add html support ([7b1a5ad](https://github.com/yxonic/vite-serve/commit/7b1a5ad4774017bceaa58d86f256aecebc190f97))
+* add markdown support ([d782e6a](https://github.com/yxonic/vite-serve/commit/d782e6ac49409b761dcd638b2a093e2d357298a7))
+
 # [0.3.0](https://github.com/yxonic/vite-serve/compare/v0.2.2...v0.3.0) (2022-01-23)
 
 
