@@ -20,7 +20,11 @@ export async function loadPlugins(
           if (req.url !== '/') return next()
           const html = await server.transformIndexHtml(
             req.url,
-            `<html>
+            `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+</head>
 <body>
 <div class="mx-auto px-8 py-20 prose">
   <div id="app"></div>

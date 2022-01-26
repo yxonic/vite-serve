@@ -16,7 +16,11 @@ export async function loadPlugins(
           if (req.url !== '/') return next()
           const html = await server.transformIndexHtml(
             req.url,
-            `<html>
+            `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+</head>
 <body>
 <div id="app"></div>
 <script type="module">

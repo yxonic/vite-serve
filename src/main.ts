@@ -24,9 +24,6 @@ interface ServeOptions {
 
 function getTypeByExt(filepath: string) {
   const ext = path.extname(filepath)
-  if (ext === '.html') {
-    return 'html'
-  }
   if (ext === '.vue') {
     return 'vue'
   }
@@ -105,7 +102,7 @@ cli
   .option('--port <port>', `[number] specify port`)
   .option(
     '-t, --type <type>',
-    `[string] component type (choose from html, vue, react, markdown)`,
+    `[string] component type (choose from vue, react, markdown)`,
   )
   .option('--no-preflight', 'disable preflight style from windicss')
   .action(serve)
