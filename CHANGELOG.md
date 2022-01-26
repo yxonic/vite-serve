@@ -1,3 +1,11 @@
+## [0.4.1](https://github.com/yxonic/vite-serve/compare/v0.4.0...v0.4.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fix markdown default style ([dc4f80a](https://github.com/yxonic/vite-serve/commit/dc4f80a1d33ec8fcdbdb7e8af366aad5ae28fcad))
+* refine the type argument ([39c680c](https://github.com/yxonic/vite-serve/commit/39c680c3b9871db51adcafe91f8cc1a5d3ca7f52))
+
 # [0.4.0](https://github.com/yxonic/vite-serve/compare/v0.3.0...v0.4.0) (2022-01-26)
 
 
