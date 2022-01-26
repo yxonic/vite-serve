@@ -70,7 +70,7 @@ async function serve(filename: string, options: ServeOptions) {
                 `${path.dirname(filepath)}/*.{html,js,jsx,ts,tsx,vue,md}`,
               ],
             },
-            safelist: ['mx-auto px-4 py-20 prose'],
+            safelist: ['mx-auto px-8 py-20 prose'],
             plugins: [typography()],
           },
         }),
