@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/yxonic/vite-serve/compare/v0.4.3...v0.4.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* update dependencies; migrate to vite api change ([91a4e76](https://github.com/yxonic/vite-serve/commit/91a4e76a3ec510363f6a2dd9899dbdb59865dfdd))
+
 ## [0.4.3](https://github.com/yxonic/vite-serve/compare/v0.4.2...v0.4.3) (2022-01-26)
 
 
