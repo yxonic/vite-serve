@@ -34,7 +34,7 @@ export async function loadPlugins(
 </html>`,
             req.originalUrl,
           )
-          return send(req, res, html, 'html')
+          return send(req, res, html, 'html', {})
         })
       },
     },
