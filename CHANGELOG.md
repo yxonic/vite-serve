@@ -1,3 +1,10 @@
+## [0.4.7](https://github.com/yxonic/vite-serve/compare/v0.4.6...v0.4.7) (2022-04-25)
+
+
+### Bug Fixes
+
+* update dependencies ([865fcca](https://github.com/yxonic/vite-serve/commit/865fcca57dc3ddfb60d5a4ca1bb5f7343a2a4267))
+
 ## [0.4.6](https://github.com/yxonic/vite-serve/compare/v0.4.5...v0.4.6) (2022-04-25)
 
 
