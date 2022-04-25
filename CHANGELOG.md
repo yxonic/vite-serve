@@ -1,3 +1,11 @@
+## [0.4.6](https://github.com/yxonic/vite-serve/compare/v0.4.5...v0.4.6) (2022-04-25)
+
+
+### Reverts
+
+* Revert "fix: update dependencies" ([7e1bb2f](https://github.com/yxonic/vite-serve/commit/7e1bb2f055be1fbc778ccb481ebcca3e06dfe2ae))
+* Revert "chore(release): 0.4.5 [skip ci]" ([1432bea](https://github.com/yxonic/vite-serve/commit/1432bea2999569ce725ee832c0ef4e24fba7a9d4))
+
 ## [0.4.4](https://github.com/yxonic/vite-serve/compare/v0.4.3...v0.4.4) (2022-04-08)
 
 
