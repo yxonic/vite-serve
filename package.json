@@ -1,6 +1,6 @@
 {
   "name": "vite-serve",
-  "version": "0.4.5",
+  "version": "0.4.4",
   "description": "instantly preview a single file component with vite",
   "bin": "dist/main.js",
   "files": [
